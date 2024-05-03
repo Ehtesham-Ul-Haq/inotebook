@@ -1,11 +1,34 @@
-import React from 'react'
-
+import React from "react";
+import Notes from "./Notes";
 const Home = () => {
   return (
     <div>
-      This is Home
-    </div>
-  )
-}
+      <div className="container my-3">
+      <h2>Add Note</h2>
+      <form>
 
-export default Home
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email address</label>
+          <input type="email" className="form-control" id="email" placeholder="name@example.com" autoComplete="username" />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="message" className="form-label">Message</label>
+          <textarea className="form-control" id="message" rows="3"></textarea>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Password</label>
+          <input type="password" className="form-control" id="password" placeholder="Password" autoComplete="current-password" />
+        </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
+
+      </form>
+      </div>
+      <Notes />
+    </div>
+  );
+};
+
+export default Home;
