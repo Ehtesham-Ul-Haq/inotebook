@@ -15,3 +15,35 @@ code {
 i {
   cursor: pointer;
 }
+
+.button {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 10px 0px 50px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+  border: 1px solid #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login {
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
+}
+.login:hover {
+  color: #ffff;
+  background-color:#4CAF50;
+}
+
+.signup {
+  color: #3498DB;
+  border: 1px solid #3498DB;
+  border-radius: 0px 10px 10px 50px;
+}
+.signup:hover {
+  color: #ffff;
+  background-color:#3498DB;
+}

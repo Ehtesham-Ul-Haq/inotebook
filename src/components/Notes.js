@@ -84,6 +84,8 @@ const Notes = () => {
                     name="etitle"
                     value={note.etitle}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
 
@@ -99,6 +101,8 @@ const Notes = () => {
                     rows="3"
                     value={note.econtent}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   ></textarea>
                 </div>
 
@@ -113,6 +117,8 @@ const Notes = () => {
                     name="etag"
                     value={note.etag}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
               </form>
@@ -127,6 +133,7 @@ const Notes = () => {
                 Close
               </button>
               <button
+                disabled= {note.etitle.length<5 || note.econtent.length<5}
                 type="button"
                 className="btn btn-primary"
                 onClick={handleClick}
@@ -139,6 +146,9 @@ const Notes = () => {
       </div>{" "}
       <div className="row my-3">
         <h2>Your Notes</h2>
+        <div className="container">
+          {notes.length===0 && 'No notes to display, Please add your first note!'}
+        </div>
         {notes.map((note) => {
           return (
             <NoteItem key={note._id} updateNote={updateNote} note={note} />

@@ -9,6 +9,7 @@ const AddNote = () => {
     const handleClick = (e) => {
         e.preventDefault();
         addNote(note.title, note.content, note.tag);
+        setNote({ title: "", content: "", tag: "" })
     }
 
     const onChange = (e) => {
@@ -21,20 +22,20 @@ const AddNote = () => {
 
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
-                    <input type="text" className="form-control" id="title" name="title" onChange={onChange} />
+                    <input type="text" className="form-control" id="title" name="title" value={note.title} onChange={onChange} minLength={5} required />
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="content" className="form-label">Content</label>
-                    <textarea type="text" className="form-control" id="content" name="content" rows="3" onChange={onChange}></textarea>
+                    <textarea type="text" className="form-control" id="content" name="content" value={note.content} rows="3" onChange={onChange} minLength={5} required></textarea>
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="tag" className="form-label">Tags</label>
-                    <input type="text" className="form-control" id="tag" name="tag" onChange={onChange} />
+                    <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange} minLength={5} required />
                 </div>
 
-                <button type="submit" className="btn btn-primary" onClick={handleClick}>Save</button>
+                <button disabled= {note.title.length<5 || note.content.length<5} type="submit" className="btn btn-primary" onClick={handleClick}>Save</button>
 
             </form>
         </div>
