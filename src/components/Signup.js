@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import '../css/LogSign.css'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
 
   const [credentials, setCredentials] = useState({name:"", email:"", password:""});
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const handleSubmit = async (e)=>{
       e.preventDefault();
@@ -21,10 +21,11 @@ const Signup = () => {
         if (json.success) {
           // save the auth token redirect
           localStorage.setItem('token', json.authtoken);
+          props.showAlert("Your Account Created Successfully", "Success")
           navigate("/");
         }      
         else{
-          alert("user already exists");
+          props.showAlert("User Already Exists", "Error")
         }
   }
 

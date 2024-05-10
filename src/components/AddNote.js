@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import noteContext from "../context/notes/noteContext";
 
-const AddNote = () => {
+const AddNote = (props) => {
     const context = useContext(noteContext);
     const { addNote } = context;
 
@@ -10,6 +10,7 @@ const AddNote = () => {
         e.preventDefault();
         addNote(note.title, note.content, note.tag);
         setNote({ title: "", content: "", tag: "" })
+        props.showAlert("Note Added Successfully", "success")
     }
 
     const onChange = (e) => {
@@ -22,17 +23,17 @@ const AddNote = () => {
 
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
-                    <input type="text" className="form-control" id="title" name="title" value={note.title} onChange={onChange} minLength={5} required />
+                    <input type="text" className="form-control" id="title" name="title" value={note.title} onChange={onChange} minLength={5} required style={{backgroundColor: props.mode=== 'dark'?'#0f032d':'white', color: props.mode=== 'dark'?'white':'#0f032d'}} />
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="content" className="form-label">Content</label>
-                    <textarea type="text" className="form-control" id="content" name="content" value={note.content} rows="3" onChange={onChange} minLength={5} required></textarea>
+                    <textarea type="text" className="form-control" id="content" name="content" value={note.content} rows="3" onChange={onChange} minLength={5} required style={{backgroundColor: props.mode=== 'dark'?'#0f032d':'white', color: props.mode=== 'dark'?'white':'#0f032d'}} />
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="tag" className="form-label">Tags</label>
-                    <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange} minLength={5} required />
+                    <input type="text" className="form-control" id="tag" name="tag" value={note.tag} onChange={onChange} minLength={5} required  style={{backgroundColor: props.mode=== 'dark'?'#0f032d':'white', color: props.mode=== 'dark'?'white':'#0f032d'}} />
                 </div>
 
                 <button disabled= {note.title.length<5 || note.content.length<5} type="submit" className="btn btn-primary" onClick={handleClick}>Save</button>

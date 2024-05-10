@@ -14,8 +14,8 @@ const NoteItem = (props) => {
                     <div className="d-flex justify-content-between align-items-center">
                         <h5 className="card-title">{note.title}</h5>
                         <div className="position-absolute top-0 end-0">
-                            <i className="fa fa-trash mx-2" style={{ color: "#FF0000", fontWeight: "lighter"}} onClick={()=>{deleteNote(note._id)}}></i>
-                            <i className="fa fa-pen mx-2" style={{ color: "#307F0A"}} onClick={()=>{updateNote(note)}}></i>
+                            <i className="fa fa-trash mx-2" style={{ color: "#FF0000", fontWeight: "lighter"}} onClick={()=>{deleteNote(note._id); props.showAlert("Note Deleted Successfully", "success") }}></i>
+                            <i className="fa fa-pen mx-2" style={{ color: "#307F0A"}} onClick={()=>{updateNote(note) }}></i>
                         </div>
                     </div>
                     <p className="card-text">{note.content}</p>

@@ -47,3 +47,13 @@ i {
   color: #ffff;
   background-color:#3498DB;
 }
+
+.logout {
+  color: #a90a0a;
+  border: 1px solid #a90a0a;
+  border-radius: 0px 10px 10px 50px;
+}
+.logout:hover {
+  color: #ffff;
+  background-color:#a90a0a;
+}

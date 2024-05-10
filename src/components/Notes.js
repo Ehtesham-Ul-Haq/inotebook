@@ -2,12 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
+import { useNavigate } from "react-router-dom";
 
-const Notes = () => {
+const Notes = (props) => {
+
+  const {mode} = props;
+  
   const context = useContext(noteContext);
+  let navigate = useNavigate();
   const { notes, getNotes, editNote } = context;
   useEffect(() => {
-    getNotes();
+    if(localStorage.getItem('token')){
+      getNotes()
+    }
+    else{
+      navigate("/login");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,6 +43,7 @@ const Notes = () => {
   const handleClick = (e) => {
     editNote(note.id, note.etitle, note.econtent, note.etag);
     refClose.current.click();
+    props.showAlert("Note Updated Successfully", "success");
   };
 
   const onChange = (e) => {
@@ -41,7 +52,7 @@ const Notes = () => {
 
   return (
     <>
-      <AddNote />
+      <AddNote mode={mode} showAlert={props.showAlert} />
       <button
         type="button"
         className="btn btn-primary d-none"
@@ -61,7 +72,7 @@ const Notes = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-title fs-5" id="exampleModalLabel" style={{color:"#000000"}}>
                 Edit Note
               </h1>
               <button
@@ -74,7 +85,7 @@ const Notes = () => {
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="title" className="form-label">
+                  <label htmlFor="title" className="form-label" style={{color:"#000000"}}>
                     Title
                   </label>
                   <input
@@ -90,7 +101,7 @@ const Notes = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="content" className="form-label">
+                  <label htmlFor="content" className="form-label" style={{color:"#000000"}}>
                     Content
                   </label>
                   <textarea
@@ -107,7 +118,7 @@ const Notes = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="tag" className="form-label">
+                  <label htmlFor="tag" className="form-label" style={{color:"#000000"}}>
                     Tags
                   </label>
                   <input
@@ -151,7 +162,7 @@ const Notes = () => {
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
           );
         })}
       </div>
